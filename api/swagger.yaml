@@ -1,0 +1,1005 @@
+---
+swagger: "2.0"
+info:
+  description: "This is an API for Hume"
+  version: "1.0.0"
+  title: "Hume"
+  termsOfService: "http://swagger.io/terms/"
+  contact: {}
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "virtserver.swaggerhub.com"
+basePath: "/intziral/Hume/1.0.0"
+tags:
+- name: "user"
+- name: "device"
+- name: "zone"
+- name: "alarm"
+- name: "temperature"
+- name: "contact devs"
+schemes:
+- "https"
+- "http"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /user:
+    post:
+      tags:
+      - "user"
+      summary: "Create user account"
+      description: "FR1 - The user must be able to enter user information"
+      operationId: "create_user"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "Body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/create_user_request"
+      deprecated: false
+      responses:
+        "200":
+          description: "OK"
+          headers: {}
+        "400":
+          description: "Bad Request"
+          headers: {}
+          schema:
+            $ref: "#/definitions/invalid_input"
+      x-swagger-router-controller: "User"
+  /user/{username}:
+    get:
+      tags:
+      - "user"
+      summary: "Get user account"
+      description: "FR1 - The user must be able to enter user information"
+      operationId: "get_user"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: ""
+        required: true
+        type: "string"
+      deprecated: false
+      responses:
+        "200":
+          description: "OK"
+          examples:
+            application/json:
+              fullname: "Dimitris Papadopoulos"
+              email: "dpapad@email.com"
+              address: "Papadopoulou 5"
+              phone: "6948753784"
+              city: "Thessaloniki"
+              username: "dPapadopoulos"
+              password: "password1234"
+          headers: {}
+          schema:
+            $ref: "#/definitions/user_response"
+      x-swagger-router-controller: "User"
+  /user/{username}/device:
+    get:
+      tags:
+      - "device"
+      summary: "Get all smart devices"
+      description: "FR4 - Τhe user must be able handle operation of smart devices"
+      operationId: "get_devices"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "(Required) The username"
+        required: true
+        type: "string"
+      deprecated: false
+      responses:
+        "200":
+          description: "OK"
+          examples:
+            application/json:
+            - - name: "dolore aliqua"
+                deviceType: "Ut in dolore"
+                brand: "nisi culpa ut anim"
+                zone: "sun"
+                status: "dolo"
+                id: -97710446
+              - name: "occaecat mollit"
+                deviceType: "laboris"
+                brand: "qui in eu esse"
+                zone: "voluptate ut in ut amet"
+                status: "aliquip ullamco sunt"
+                id: 56769003
+            - - name: "id ullamco"
+                deviceType: "nostru"
+                brand: "ad sed ullamco nostrud Lorem"
+                zone: "Duis commodo sunt"
+                status: "aliqua in"
+                id: 87202422
+              - name: "est incididunt do elit"
+                deviceType: "anim sit laboris do aliquip"
+                brand: ""
+                zone: "proident minim amet"
+                status: "et tempor"
+                id: 73024196
+          headers: {}
+          schema:
+            type: "array"
+            items:
+              type: "array"
+              items:
+                $ref: "#/definitions/device_response"
+      x-swagger-router-controller: "Device"
+    post:
+      tags:
+      - "device"
+      summary: "Add new smart device"
+      description: "FR2 - The user must be able to add smart devices in the system\n"
+      operationId: "add_device"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "(Required) The user adds a new smart device"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "Body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/add_device_request"
+      deprecated: false
+      responses:
+        "200":
+          description: "OK"
+          headers: {}
+        "400":
+          description: "Bad Request"
+          headers: {}
+          schema:
+            $ref: "#/definitions/invalid_input"
+      x-swagger-router-controller: "Device"
+  /user/{username}/device/{device_id}:
+    get:
+      tags:
+      - "device"
+      summary: "Retrieve smart device"
+      description: "FR4 - Τhe user must be able handle operation of smart devices"
+      operationId: "get_device"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "(Required) The username"
+        required: true
+        type: "string"
+      - name: "device_id"
+        in: "path"
+        description: "(Required) The ID of the smart device"
+        required: true
+        type: "integer"
+      deprecated: false
+      responses:
+        "200":
+          description: "OK"
+          examples:
+            application/json:
+              name: "Ut sint"
+              deviceType: "mollit dolore"
+              brand: "pariatur veniam"
+              zone: "laboris do sint"
+              status: "ipsum amet nostrud consectetur"
+              id: 47256135
+          headers: {}
+          schema:
+            $ref: "#/definitions/successful_device_get"
+        "404":
+          description: "Bad Request"
+          headers: {}
+          schema:
+            $ref: "#/definitions/invalid_device_id"
+      x-swagger-router-controller: "Device"
+    delete:
+      tags:
+      - "device"
+      summary: "Delete smart device"
+      description: "FR4 - Τhe user must be able handle operation of smart devices"
+      operationId: "delete_device"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "(Required) The username"
+        required: true
+        type: "string"
+      - name: "device_id"
+        in: "path"
+        description: "(Required) The ID of the smart device"
+        required: true
+        type: "integer"
+        format: "int32"
+      deprecated: false
+      responses:
+        "204":
+          description: "No Content"
+          headers: {}
+        "404":
+          description: "Bad Request"
+          headers: {}
+          schema:
+            $ref: "#/definitions/invalid_device_id"
+      x-swagger-router-controller: "Device"
+  /user/{username}/device/{device_name}/deviceStatus:
+    put:
+      tags:
+      - "device"
+      summary: "Update smart device"
+      description: "FR4 - Τhe user must be able handle operation of smart devices"
+      operationId: "update_device"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "device_status"
+        in: "query"
+        description: "(Required) The new smart device's operation that is given by\
+          \ the user"
+        required: true
+        type: "string"
+      - name: "username"
+        in: "path"
+        description: "(Required) The username"
+        required: true
+        type: "string"
+      - name: "device_name"
+        in: "path"
+        description: "(Required) The name of the smart device"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "Body"
+        description: ""
+        required: false
+        schema:
+          $ref: "#/definitions/update_device_request"
+      deprecated: false
+      responses:
+        "200":
+          description: "OK"
+          examples:
+            application/json:
+              name: "Ut sint"
+              deviceType: "mollit dolore"
+              brand: "pariatur veniam"
+              zone: "laboris do sint"
+              status: "ipsum amet nostrud consectetur"
+              id: 47256135
+          headers: {}
+          schema:
+            $ref: "#/definitions/successful_device_update"
+        "404":
+          description: "Bad Request"
+          headers: {}
+          schema:
+            $ref: "#/definitions/invalid_input"
+      x-swagger-router-controller: "Device"
+  /user/{username}/zone/{zone_id}/temperature_status:
+    get:
+      tags:
+      - "temperature"
+      summary: "Retrieve temperature's value"
+      description: "FR-3 Τhe user must be able to modify temperature"
+      operationId: "get_temp"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "(Required) The username"
+        required: true
+        type: "string"
+      - name: "zone_id"
+        in: "path"
+        description: "(Required) The ID of the zone"
+        required: true
+        type: "integer"
+        format: "int32"
+      deprecated: false
+      responses:
+        "200":
+          description: "OK"
+          examples:
+            application/json:
+              value: 20
+          headers: {}
+          schema:
+            $ref: "#/definitions/temp_response"
+        "400":
+          description: "Bad Request"
+          headers: {}
+          schema:
+            $ref: "#/definitions/invalid_input"
+      x-swagger-router-controller: "Temperature"
+    put:
+      tags:
+      - "temperature"
+      summary: "Modify Temperature"
+      description: "FR-3 Τhe user must be able to modify temperature"
+      operationId: "modify_temp"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "temperature_status"
+        in: "query"
+        description: "(Required) The temperature given by the user"
+        required: true
+        type: "number"
+        format: "double"
+      - name: "username"
+        in: "path"
+        description: "(Required) The username"
+        required: true
+        type: "string"
+      - name: "zone_id"
+        in: "path"
+        description: "(Required) The ID of the zone"
+        required: true
+        type: "integer"
+        format: "int32"
+      deprecated: false
+      responses:
+        "201":
+          description: "OK"
+          headers: {}
+        "400":
+          description: "Bad Request"
+          headers: {}
+          schema:
+            $ref: "#/definitions/invalid_temp"
+        "404":
+          description: "Bad Request"
+          headers: {}
+          schema:
+            $ref: "#/definitions/invalid_input"
+      x-swagger-router-controller: "Temperature"
+  /user/{username}/zone/{zone_id}/alarm_status:
+    get:
+      tags:
+      - "alarm"
+      summary: "Retrieve alarm's status"
+      description: "FR-5 Τhe user must be able to handle alarm system"
+      operationId: "get_alarm_status"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "(Required) The username"
+        required: true
+        type: "string"
+      - name: "zone_id"
+        in: "path"
+        description: "(Required) The ID of the zone"
+        required: true
+        type: "integer"
+        format: "int32"
+      deprecated: false
+      responses:
+        "200":
+          description: "OK"
+          examples:
+            application/json:
+              value: true
+          headers: {}
+          schema:
+            $ref: "#/definitions/alarm_response"
+        "404":
+          description: "Bad Request"
+          headers: {}
+          schema:
+            $ref: "#/definitions/invalid_input"
+      x-swagger-router-controller: "Alarm"
+    put:
+      tags:
+      - "alarm"
+      summary: "Handle alarm's status"
+      description: "FR-5 Τhe user must be able to handle alarm system"
+      operationId: "modify_alarm_status"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "alarm_status"
+        in: "query"
+        description: "(Required) The alarm's status given by the user"
+        required: true
+        type: "boolean"
+      - name: "username"
+        in: "path"
+        description: "(Required) The username"
+        required: true
+        type: "string"
+      - name: "zone_id"
+        in: "path"
+        description: "(Required) The ID of the zone"
+        required: true
+        type: "integer"
+        format: "int32"
+      deprecated: false
+      responses:
+        "200":
+          description: "OK"
+          headers: {}
+        "404":
+          description: "Bad Request"
+          headers: {}
+          schema:
+            $ref: "#/definitions/invalid_input"
+      x-swagger-router-controller: "Alarm"
+  /user/{username}/zone:
+    get:
+      tags:
+      - "zone"
+      summary: "Get all smart zones"
+      description: "FR3 - Τhe user must be able to modify temperature >- FR5 - Τhe\
+        \ user must be able to handle alarm system"
+      operationId: "get_zones"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "(Required) The username"
+        required: true
+        type: "string"
+      deprecated: false
+      responses:
+        "200":
+          description: "OK"
+          examples:
+            application/json:
+            - zone_id: 16419109
+              zone_name: "Hallway1"
+              zone_alarm: true
+              zone_temp: 22
+            - zone_id: 97527035
+              zone_name: "Living Room"
+              zone_alarm: true
+              zone_temp: 23.1
+          headers: {}
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/zone_response"
+      x-swagger-router-controller: "Zone"
+    post:
+      tags:
+      - "zone"
+      summary: "Add new zone"
+      description: "FR-3 Τhe user must be able to modify temperature FR-5 Τhe user\
+        \ must be able to handle alarm system"
+      operationId: "add_zone"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "(Required) The username"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "Body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/add_zone_request"
+      deprecated: false
+      responses:
+        "200":
+          description: "OK"
+          headers: {}
+        "400":
+          description: "Bad Request"
+          headers: {}
+          schema:
+            $ref: "#/definitions/invalid_input"
+      x-swagger-router-controller: "Zone"
+  /user/{username}/zone/{zone_id}:
+    get:
+      tags:
+      - "zone"
+      summary: "Retrieve zone"
+      description: "FR-3 Τhe user must be able to modify temperature FR-5 Τhe user\
+        \ must be able to handle alarm system"
+      operationId: "get_zone"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "(Required) The username"
+        required: true
+        type: "string"
+      - name: "zone_id"
+        in: "path"
+        description: "(Required) The ID of the zone"
+        required: true
+        type: "integer"
+        format: "int32"
+      deprecated: false
+      responses:
+        "200":
+          description: "OK"
+          examples:
+            application/json:
+              zone_id: 43908941
+              zone_name: "Hallway2"
+              zone_alarm: true
+              zone_temp: 21.4
+          headers: {}
+          schema:
+            $ref: "#/definitions/zone_response"
+        "404":
+          description: "Bad Request"
+          headers: {}
+          schema:
+            $ref: "#/definitions/invalid_zone_id"
+      x-swagger-router-controller: "Zone"
+    delete:
+      tags:
+      - "zone"
+      summary: "Delete zone"
+      description: "FR-3 Τhe user must be able to modify temperature FR-5 Τhe user\
+        \ must be able to handle alarm system"
+      operationId: "delete_zone"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "(Required) The username"
+        required: true
+        type: "string"
+      - name: "zone_id"
+        in: "path"
+        description: "(Required) The ID of zone"
+        required: true
+        type: "integer"
+        format: "int32"
+      deprecated: false
+      responses:
+        "204":
+          description: "No Content"
+          headers: {}
+        "404":
+          description: "Bad Request"
+          headers: {}
+          schema:
+            $ref: "#/definitions/invalid_zone_id"
+      x-swagger-router-controller: "Zone"
+  /user/{username}/contact:
+    post:
+      tags:
+      - "contact devs"
+      summary: "Contact developers"
+      description: "FR10 - Τhe user must be able to contact with developers"
+      operationId: "contact_devs"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "fullname"
+        in: "query"
+        description: "(Required) The user's fullname"
+        required: true
+        type: "string"
+      - name: "email"
+        in: "query"
+        description: "(Required) The user's email"
+        required: true
+        type: "string"
+      - name: "text_message"
+        in: "query"
+        description: "(Required) The user's message for the developers"
+        required: true
+        type: "string"
+      - name: "username"
+        in: "path"
+        description: "(Required) The username"
+        required: true
+        type: "string"
+      deprecated: false
+      responses:
+        "204":
+          description: "No content"
+          headers: {}
+        "404":
+          description: "Bad Request"
+          headers: {}
+          schema:
+            $ref: "#/definitions/invalid_contact"
+      x-swagger-router-controller: "ContactDevs"
+securityDefinitions: {}
+definitions:
+  successful_device_get:
+    type: "object"
+    required:
+    - "brand"
+    - "deviceType"
+    - "id"
+    - "name"
+    - "status"
+    - "zone"
+    properties:
+      name:
+        type: "string"
+      deviceType:
+        type: "string"
+      brand:
+        type: "string"
+      zone:
+        type: "string"
+      status:
+        type: "string"
+      id:
+        type: "integer"
+        format: "int32"
+    title: "successful_device_get"
+    example:
+      name: "Ut sint"
+      deviceType: "mollit dolore"
+      brand: "pariatur veniam"
+      zone: "laboris do sint"
+      status: "ipsum amet nostrud consectetur"
+      id: 47256135
+  invalid_device_id:
+    type: "object"
+    required:
+    - "code"
+    - "message"
+    properties:
+      code:
+        type: "number"
+        format: "double"
+      message:
+        type: "number"
+        format: "double"
+    title: "invalid_device_id"
+    example:
+      code: -1.6184620188286126E7
+      message: 4.7046706909793735E7
+  add_device_request:
+    type: "object"
+    required:
+    - "brand"
+    - "deviceType"
+    - "id"
+    - "name"
+    - "status"
+    - "zone"
+    properties:
+      name:
+        type: "string"
+      deviceType:
+        type: "string"
+      brand:
+        type: "string"
+      zone:
+        type: "string"
+      status:
+        type: "string"
+      id:
+        type: "integer"
+        format: "int32"
+    title: "add_device_request"
+    example:
+      name: "Ut sint"
+      deviceType: "mollit dolore"
+      brand: "pariatur veniam"
+      zone: "laboris do sint"
+      status: "ipsum amet nostrud consectetur"
+      id: 47256135
+  device_response:
+    type: "object"
+    required:
+    - "brand"
+    - "deviceType"
+    - "id"
+    - "name"
+    - "status"
+    - "zone"
+    properties:
+      name:
+        type: "string"
+      deviceType:
+        type: "string"
+      brand:
+        type: "string"
+      zone:
+        type: "string"
+      status:
+        type: "string"
+      id:
+        type: "integer"
+        format: "int32"
+    title: "device_response"
+    example:
+      name: "Ut sint"
+      deviceType: "mollit dolore"
+      brand: "pariatur veniam"
+      zone: "laboris do sint"
+      status: "ipsum amet nostrud consectetur"
+      id: 47256135
+  invalid_input:
+    type: "object"
+    required:
+    - "code"
+    - "message"
+    properties:
+      code:
+        type: "number"
+        format: "double"
+      message:
+        type: "number"
+        format: "double"
+    title: "invalid_input"
+    example:
+      code: -1.6184620188286126E7
+      message: 4.7046706909793735E7
+  invalid_temp:
+    type: "object"
+    required:
+    - "code"
+    - "message"
+    properties:
+      code:
+        type: "number"
+        format: "double"
+      message:
+        type: "number"
+        format: "double"
+    title: "invalid_temp"
+    example:
+      code: -1.6184620188286126E7
+      message: 4.7046706909793735E7
+  update_device_request:
+    type: "object"
+    required:
+    - "brand"
+    - "deviceType"
+    - "id"
+    - "name"
+    - "status"
+    - "zone"
+    properties:
+      name:
+        type: "string"
+      deviceType:
+        type: "string"
+      brand:
+        type: "string"
+      zone:
+        type: "string"
+      status:
+        type: "string"
+      id:
+        type: "integer"
+        format: "int32"
+    title: "update_device_request"
+    example:
+      name: "Ut sint"
+      deviceType: "mollit dolore"
+      brand: "pariatur veniam"
+      zone: "laboris do sint"
+      status: "ipsum amet nostrud consectetur"
+      id: 47256135
+  successful_device_update:
+    type: "object"
+    required:
+    - "brand"
+    - "deviceType"
+    - "id"
+    - "name"
+    - "status"
+    - "zone"
+    properties:
+      name:
+        type: "string"
+      deviceType:
+        type: "string"
+      brand:
+        type: "string"
+      zone:
+        type: "string"
+      status:
+        type: "string"
+      id:
+        type: "integer"
+        format: "int32"
+    title: "successful_device_update"
+    example:
+      name: "Ut sint"
+      deviceType: "mollit dolore"
+      brand: "pariatur veniam"
+      zone: "laboris do sint"
+      status: "ipsum amet nostrud consectetur"
+      id: 47256135
+  temp_response:
+    type: "object"
+    required:
+    - "value"
+    properties:
+      value:
+        type: "string"
+    title: "temp_response"
+    example:
+      value: "reference #/components/schemas/Zone/{zone_temp} not found in the OpenAPI\
+        \ spec"
+  alarm_response:
+    type: "object"
+    required:
+    - "value"
+    properties:
+      value:
+        type: "string"
+    title: "alarm_response"
+    example:
+      value: "reference #/components/schemas/Zone/{zone_alarm} not found in the OpenAPI\
+        \ spec"
+  zone_response:
+    type: "object"
+    required:
+    - "zone_alarm"
+    - "zone_id"
+    - "zone_name"
+    - "zone_temp"
+    properties:
+      zone_id:
+        type: "integer"
+        format: "int32"
+      zone_name:
+        type: "string"
+      zone_alarm:
+        type: "boolean"
+      zone_temp:
+        type: "number"
+        format: "double"
+    title: "zone_response"
+    example:
+      zone_id: -43908941
+      zone_name: "ipsum velit sit"
+      zone_alarm: true
+      zone_temp: 7253421.24441503
+  invalid_zone_id:
+    type: "object"
+    required:
+    - "code"
+    - "message"
+    properties:
+      code:
+        type: "number"
+        format: "double"
+      message:
+        type: "number"
+        format: "double"
+    title: "invalid_zone_id"
+    example:
+      code: -1.6184620188286126E7
+      message: 4.7046706909793735E7
+  add_zone_request:
+    type: "object"
+    required:
+    - "zone_alarm"
+    - "zone_id"
+    - "zone_name"
+    - "zone_temp"
+    properties:
+      zone_id:
+        type: "integer"
+        format: "int32"
+      zone_name:
+        type: "string"
+      zone_alarm:
+        type: "boolean"
+      zone_temp:
+        type: "number"
+        format: "double"
+    title: "add_zone_request"
+    example:
+      zone_id: -43908941
+      zone_name: "ipsum velit sit"
+      zone_alarm: true
+      zone_temp: 7253421.24441503
+  invalid_contact:
+    type: "object"
+    required:
+    - "code"
+    - "message"
+    properties:
+      code:
+        type: "number"
+        format: "double"
+      message:
+        type: "number"
+        format: "double"
+    title: "invalid_contact"
+    example:
+      code: -1.6184620188286126E7
+      message: 4.7046706909793735E7
+  create_user_request:
+    type: "object"
+    required:
+    - "address"
+    - "city"
+    - "email"
+    - "fullname"
+    - "password"
+    - "phone"
+    - "username"
+    properties:
+      fullname:
+        type: "string"
+      email:
+        type: "string"
+      address:
+        type: "string"
+      phone:
+        type: "string"
+      city:
+        type: "string"
+      username:
+        type: "string"
+      password:
+        type: "string"
+    title: "create_user_request"
+    example:
+      fullname: "ad"
+      email: "cillum est"
+      address: "eu aliqua quis"
+      phone: "52387447"
+      city: "id occaecat labore"
+      username: "incididunt in ex nulla"
+      password: "mollit esse"
+  user_response:
+    type: "object"
+    required:
+    - "address"
+    - "city"
+    - "email"
+    - "fullname"
+    - "password"
+    - "phone"
+    - "username"
+    properties:
+      fullname:
+        type: "string"
+      email:
+        type: "string"
+      address:
+        type: "string"
+      phone:
+        type: "string"
+      city:
+        type: "string"
+      username:
+        type: "string"
+      password:
+        type: "string"
+    title: "user_response"
