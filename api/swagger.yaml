@@ -9,7 +9,7 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "virtserver.swaggerhub.com"
+host: "localhost:8080"
 basePath: "/hume/1.0.0"
 tags:
 - name: "user"
@@ -19,7 +19,6 @@ tags:
 - name: "temperature"
 - name: "contact devs"
 schemes:
-- "https"
 - "http"
 consumes:
 - "application/json"
@@ -108,7 +107,7 @@ paths:
           description: "OK"
           examples:
             application/json:
-            - - name: "dolore aliqua"
+              - name: "dolore aliqua"
                 deviceType: "Ut in dolore"
                 brand: "nisi culpa ut anim"
                 zone: "sun"
@@ -120,7 +119,7 @@ paths:
                 zone: "voluptate ut in ut amet"
                 status: "aliquip ullamco sunt"
                 id: 56769003
-            - - name: "id ullamco"
+              - name: "id ullamco"
                 deviceType: "nostru"
                 brand: "ad sed ullamco nostrud Lorem"
                 zone: "Duis commodo sunt"
