@@ -69,7 +69,7 @@ exports.get_device = function(username,device_id) {
 exports.get_devices = function(username) {
   return new Promise(function(resolve, reject) {
     var examples = {};
-    examples['application/json'] = [ [ {
+    examples['application/json'] = [{
   "name" : "dolore aliqua",
   "deviceType" : "Ut in dolore",
   "brand" : "nisi culpa ut anim",
@@ -83,7 +83,7 @@ exports.get_devices = function(username) {
   "zone" : "voluptate ut in ut amet",
   "status" : "aliquip ullamco sunt",
   "id" : 56769003
-} ], [ {
+}, {
   "name" : "id ullamco",
   "deviceType" : "nostru",
   "brand" : "ad sed ullamco nostrud Lorem",
@@ -97,7 +97,7 @@ exports.get_devices = function(username) {
   "zone" : "proident minim amet",
   "status" : "et tempor",
   "id" : 73024196
-} ] ];
+} ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
