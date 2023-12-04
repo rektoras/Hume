@@ -65,3 +65,9 @@ test.before(async (t) => {
 test.after.always((t) => {
   t.context.server.close();
 });
+
+test('Get all devices', async (t) => {
+  const { body, statusCode } = await t.context.got('user/test');
+  console.log(body);
+  console.log(statusCode);
+});
