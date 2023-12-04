@@ -44,3 +44,5 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   }
 
 });
+
+module.exports = app;
