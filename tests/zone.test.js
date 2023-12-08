@@ -3,7 +3,7 @@ const got = require('got');
 const http = require('http');
 const listen = require('test-listen');
 
-const { add_zone, delete_device, get_zone, get_zones } = require('../service/ZoneService');
+const { add_zone, delete_zone, get_zone, get_zones } = require('../service/ZoneService');
 const app = require('../index.js');
 
 /**
