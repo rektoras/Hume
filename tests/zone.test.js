@@ -19,6 +19,11 @@ test('Get all zones by function', async t => {
   t.is(result[1].zone_name, 'Living Room');
 });
 
+test('Delete zone by function', async t => {
+  const result = await delete_zone('test_user', 1);
+  t.is(result, undefined);
+});
+
 
 /**
  * Test device endpoints
@@ -41,5 +46,16 @@ test.before(async (t) => {
     t.is(body[0].zone_name, 'Hallway1');
     t.is(body[1].zone_id, 97527035);
     t.is(body[1].zone_name, 'Living Room');
+  });
+
+  test.serial('DELETE /user/{username}/zone/{zone_id}', async (t) => {
+    const { body, statusCode } = await t.context.got.delete('user/test_user/zone/1');
+    t.is(statusCode, 200);
+  
+    try{
+      await t.context.got('user/test_user/zone/string');
+    } catch(error){
+      t.is(error.response.statusCode, 400);
+    }
   });
   
