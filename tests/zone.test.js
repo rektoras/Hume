@@ -37,7 +37,7 @@ test('Add new zone by function', async t => {
   const result = await add_zone('test_user', {
     "zone_id": 16419109,
     "zone_name": "Hallway1",
-    "zone_alarm": true,
+    "zone_alarm": 'true',
     "zone_temp": 19.5
   });
   t.is(result, undefined);
@@ -96,7 +96,7 @@ test.before(async (t) => {
       json: {
         "zone_id": 16419109,
         "zone_name": "Hallway1",
-        "zone_alarm": true,
+        "zone_alarm": 'true',
         "zone_temp": 19.5
       }
     });
