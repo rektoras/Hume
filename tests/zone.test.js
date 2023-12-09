@@ -22,7 +22,7 @@ test('Get all zones by function', async t => {
 test('Get zone by function', async t => {
   const result = await get_zone('test_user', 1);
   t.is(typeof result, 'object');
-  t.is(result.zone_id, '43908941');
+  t.is(result.zone_id, 43908941);
   t.is(result.zone_name, 'Hallway2');
   t.is(result.zone_alarm, 'true');
   t.is(result.zone_temp, '21.4');
@@ -111,6 +111,7 @@ test.before(async (t) => {
     try{
       await t.context.got.post('user/test_user/zone', {
         json: {
+          "zone_id": 16419109,
           "zone_name": "Hallway1",
         }
       });
