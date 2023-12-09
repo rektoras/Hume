@@ -25,7 +25,7 @@ test('Get zone by function', async t => {
   t.is(result.zone_id, 43908941);
   t.is(result.zone_name, 'Hallway2');
   t.is(result.zone_alarm, true);
-  t.is(result.zone_temp, '21.4');
+  t.is(result.zone_temp, 21.4);
 });
 
 test('Delete zone by function', async t => {
