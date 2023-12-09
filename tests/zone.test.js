@@ -24,7 +24,7 @@ test('Get zone by function', async t => {
   t.is(typeof result, 'object');
   t.is(result.zone_id, 43908941);
   t.is(result.zone_name, 'Hallway2');
-  t.is(result.zone_alarm, 'true');
+  t.is(result.zone_alarm, true);
   t.is(result.zone_temp, '21.4');
 });
 
@@ -37,7 +37,7 @@ test('Add new zone by function', async t => {
   const result = await add_zone('test_user', {
     "zone_id": 16419109,
     "zone_name": "Hallway1",
-    "zone_alarm": 'true',
+    "zone_alarm": true,
     "zone_temp": 19.5
   });
   t.is(result, undefined);
@@ -96,7 +96,7 @@ test.before(async (t) => {
       json: {
         "zone_id": 16419109,
         "zone_name": "Hallway1",
-        "zone_alarm": 'true',
+        "zone_alarm": true,
         "zone_temp": 19.5
       }
     });
