@@ -9,15 +9,15 @@ const app = require('../index.js');
 /**
  * Test TemperatureService functions
  */
-test('Get temperature by function', async (t) => {
-  const result = await get_temp('test_user', 'test_zone');
+test('Retrieve temperature by function', async t => {
+  const result = await get_temp('test_user', 1);
   t.is(typeof result, 'object');
-  t.is(result.value, 20); 
+  t.is(result.value, 20);
 });
 
-test('Modify temperature by function', async (t) => {
-  const result = await modify_temp('active', 'test_user', 'test_zone');
-  t.is(typeof result, 'undefined'); // Since no response is expected, check for undefined
+test('Modify temperature by function', async t => {
+  const result = await modify_temp(25, 'test_user', 1);
+  t.is(result, undefined);
 });
 
 /**
@@ -29,26 +29,40 @@ test.before(async (t) => {
   t.context.got = got.extend({ prefixUrl: t.context.prefixUrl, responseType: 'json' });
 });
 
-test.after.always(t => {
+test.after.always((t) => {
   t.context.server.close();
 });
 
-test.serial('GET /user/{username}/temperature/{zone_id}', async (t) => {
-  const { body, statusCode } = await t.context.got('user/test_user/temperature/test_zone');
+test.serial('GET /user/{username}/zone/{zone_id}/temperature_status', async (t) => {
+  const { body, statusCode } = await t.context.got('user/test_user/zone/1/temperature_status');
   t.is(statusCode, 200);
   t.is(typeof body, 'object');
-  t.is(body.value, 20); 
-});
+  t.is(body.value, 20);
 
-test.serial('PUT /user/{username}/temperature/{zone_id}/temperatureStatus', async (t) => {
-    const { statusCode } = await t.context.got.put('user/test_user/temperature/test_zone/temperatureStatus', {
-      searchParams: {
-        temperature_status: 'active',
-        username: 'test_user',
-        zone_id: 'test_zone',
-      },
-      json: {},
+  try {
+    await t.context.got('user/test_user/zone/string/temperature_status');
+  } catch (error) {
+    t.is(error.response.statusCode, 400);
+  }
+});
+test.serial('PUT /user/{username}/zone/{zone_id}/temperature_status', async (t) => {
+  const payload = {
+    temperature_status: 20,  
+  };
+
+  try {
+    const { body, statusCode } = await t.context.got.put(`user/test_user/zone/1/temperature_status?temperature_status=${payload.temperature_status}`, {
+      json: payload,
     });
-    t.is(statusCode, 200);
-  });
-  
+
+    t.is(statusCode, 200); 
+    t.deepEqual(body, ''); 
+
+  } catch (error) {
+    if (error.response) {
+      t.fail(`Failed to update temperature. Status Code: ${error.response.statusCode}, Response: ${JSON.stringify(error.response.body)}`);
+    } else {
+      t.fail(`Failed to update temperature: ${error.message}`);
+    }
+  }
+});
