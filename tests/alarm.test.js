@@ -3,7 +3,7 @@ const got = require('got');
 const http = require('http');
 const listen = require('test-listen');
 
-const { get_alarm_status, modify_alarm_status } = require('../service/AlarmService');
+const { get_alarm_status, modify_alarm_status } = require('../service/AlarmService.js');
 const app = require('../index.js');
 
 /**
