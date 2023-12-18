@@ -23,9 +23,20 @@ const listen = require('test-listen');
     t.is(result, undefined);
   });
 
+  test('Get user by function', async t => {
+    const result = await get_user('test_user', 1);
+    t.is(typeof result, 'object');
+    t.is(result.username, 'dPapadopoulos');
+  });
+
 /**
  * Test User endpoints
  */
+
+/**
+ * Test Post User endpoint
+ */
+
   test.before(async (t) => {
     t.context.server = http.createServer(app);
     t.context.prefixUrl = await listen(t.context.server);
@@ -45,7 +56,7 @@ const listen = require('test-listen');
       "phone": "52387447",
       "city": "Thessaloniki",
       "username": "nikolat",
-      "password": "current"
+      "password": "currentpassword"
       }
     });
     t.is(statusCode, 200);
@@ -65,9 +76,26 @@ const listen = require('test-listen');
             "phone": "52387447",
             "city": "Thessaloniki",
             "username": "nikolat",
-            "password": "current",
+            "password": "currentpassword",
         }
       });
+    } catch(error){
+      t.is(error.response.statusCode, 400);
+    }
+  });
+
+  /**
+ * Test Post User endpoint
+ */
+
+  test.serial('GET /user/{username}', async (t) => {
+    const { body, statusCode } = await t.context.got('user/test_user/device/1');
+    t.is(statusCode, 200);
+    t.is(typeof body, 'object');
+   
+  
+    try{
+      await t.context.got('user/string');
     } catch(error){
       t.is(error.response.statusCode, 400);
     }
