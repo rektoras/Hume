@@ -922,10 +922,10 @@ definitions:
         format: "double"
     title: "add_zone_request"
     example:
-      zone_id: -43908941
-      zone_name: "ipsum velit sit"
+      zone_id: 16419109
+      zone_name: "Hallway1"
       zone_alarm: true
-      zone_temp: 7253421.24441503
+      zone_temp: 19.50
   invalid_contact:
     type: "object"
     required:
@@ -969,13 +969,13 @@ definitions:
         type: "string"
     title: "create_user_request"
     example:
-      fullname: "ad"
-      email: "cillum est"
-      address: "eu aliqua quis"
+      fullname: "Nikola Tesla"
+      email: "nikt@gmail.com"
+      address: "Septembriou 20"
       phone: "52387447"
-      city: "id occaecat labore"
-      username: "incididunt in ex nulla"
-      password: "mollit esse"
+      city: "Thessaloniki"
+      username: "nikolat"
+      password: "current"
   user_response:
     type: "object"
     required:

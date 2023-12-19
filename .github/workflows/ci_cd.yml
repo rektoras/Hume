@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "intziral", "anastasiaf", "ektoras", "seraina", "konstantina" ]
 
 jobs:
   ci:
