@@ -11,8 +11,8 @@
  * username String (Required) The username
  * no response value expected for this operation
  **/
-exports.contact_devs = function(fullname,email,text_message,username) {
-  return new Promise(function(resolve, reject) {
+exports.contact_devs = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }

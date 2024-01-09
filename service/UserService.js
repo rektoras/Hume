@@ -8,8 +8,8 @@
  * body Create_user_request 
  * no response value expected for this operation
  **/
-exports.create_user = function(body) {
-  return new Promise(function(resolve, reject) {
+exports.create_user = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
@@ -22,8 +22,8 @@ exports.create_user = function(body) {
  * username String 
  * returns user_response
  **/
-exports.get_user = function(username) {
-  return new Promise(function(resolve, reject) {
+exports.get_user = function() {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = {
   "fullname" : "Dimitris Papadopoulos",

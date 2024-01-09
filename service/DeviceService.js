@@ -9,8 +9,8 @@
  * body Add_device_request 
  * no response value expected for this operation
  **/
-exports.add_device = function(username,body) {
-  return new Promise(function(resolve, reject) {
+exports.add_device = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
@@ -24,8 +24,8 @@ exports.add_device = function(username,body) {
  * device_id Integer (Required) The ID of the smart device
  * no response value expected for this operation
  **/
-exports.delete_device = function(username,device_id) {
-  return new Promise(function(resolve, reject) {
+exports.delete_device = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
@@ -39,8 +39,8 @@ exports.delete_device = function(username,device_id) {
  * device_id Integer (Required) The ID of the smart device
  * returns successful_device_get
  **/
-exports.get_device = function(username,device_id) {
-  return new Promise(function(resolve, reject) {
+exports.get_device = function() {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = {
   "name" : "Ut sint",
@@ -66,8 +66,8 @@ exports.get_device = function(username,device_id) {
  * username String (Required) The username
  * returns List
  **/
-exports.get_devices = function(username) {
-  return new Promise(function(resolve, reject) {
+exports.get_devices = function() {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = [{
   "name" : "dolore aliqua",
@@ -117,8 +117,8 @@ exports.get_devices = function(username) {
  * body Update_device_request  (optional)
  * returns successful_device_update
  **/
-exports.update_device = function(device_status,username,device_name,body) {
-  return new Promise(function(resolve, reject) {
+exports.update_device = function() {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = {
   "name" : "Ut sint",

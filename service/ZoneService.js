@@ -9,8 +9,8 @@
  * body Add_zone_request 
  * no response value expected for this operation
  **/
-exports.add_zone = function(username,body) {
-  return new Promise(function(resolve, reject) {
+exports.add_zone = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
@@ -24,8 +24,8 @@ exports.add_zone = function(username,body) {
  * zone_id Integer (Required) The ID of zone
  * no response value expected for this operation
  **/
-exports.delete_zone = function(username,zone_id) {
-  return new Promise(function(resolve, reject) {
+exports.delete_zone = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
@@ -39,8 +39,8 @@ exports.delete_zone = function(username,zone_id) {
  * zone_id Integer (Required) The ID of the zone
  * returns zone_response
  **/
-exports.get_zone = function(username,zone_id) {
-  return new Promise(function(resolve, reject) {
+exports.get_zone = function() {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = {
   "zone_id" : 43908941,
@@ -64,8 +64,8 @@ exports.get_zone = function(username,zone_id) {
  * username String (Required) The username
  * returns List
  **/
-exports.get_zones = function(username) {
-  return new Promise(function(resolve, reject) {
+exports.get_zones = function() {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = [ {
   "zone_id" : 16419109,

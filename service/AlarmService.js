@@ -9,8 +9,8 @@
  * zone_id Integer (Required) The ID of the zone
  * returns alarm_response
  **/
-exports.get_alarm_status = function(username,zone_id) {
-  return new Promise(function(resolve, reject) {
+exports.get_alarm_status = function() {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = {
   "value" : true
@@ -33,8 +33,8 @@ exports.get_alarm_status = function(username,zone_id) {
  * zone_id Integer (Required) The ID of the zone
  * no response value expected for this operation
  **/
-exports.modify_alarm_status = function(alarm_status,username,zone_id) {
-  return new Promise(function(resolve, reject) {
+exports.modify_alarm_status = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
