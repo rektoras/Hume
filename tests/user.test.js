@@ -29,9 +29,6 @@ const listen = require('test-listen');
     t.is(result.username, 'dPapadopoulos');
   });
 
-/**
- * Test User endpoints
- */
 
 /**
  * Test Post User endpoint
