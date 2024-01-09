@@ -9,8 +9,8 @@
  * zone_id Integer (Required) The ID of the zone
  * returns temp_response
  **/
-exports.get_temp = function(username,zone_id) {
-  return new Promise(function(resolve, reject) {
+exports.get_temp = function() {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = {
   "value" : 20
@@ -33,8 +33,8 @@ exports.get_temp = function(username,zone_id) {
  * zone_id Integer (Required) The ID of the zone
  * no response value expected for this operation
  **/
-exports.modify_temp = function(temperature_status,username,zone_id) {
-  return new Promise(function(resolve, reject) {
+exports.modify_temp = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }

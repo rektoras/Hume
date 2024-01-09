@@ -9,8 +9,8 @@
  * body Add_zone_request 
  * no response value expected for this operation
  **/
-exports.add_zone = function(username,body) {
-  return new Promise(function(resolve, reject) {
+exports.add_zone = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
@@ -24,8 +24,8 @@ exports.add_zone = function(username,body) {
  * zone_id Integer (Required) The ID of zone
  * no response value expected for this operation
  **/
-exports.delete_zone = function(username,zone_id) {
-  return new Promise(function(resolve, reject) {
+exports.delete_zone = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
