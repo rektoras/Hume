@@ -39,8 +39,8 @@ exports.delete_zone = function() {
  * zone_id Integer (Required) The ID of the zone
  * returns zone_response
  **/
-exports.get_zone = function(username,zone_id) {
-  return new Promise(function(resolve, reject) {
+exports.get_zone = function() {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = {
   "zone_id" : 43908941,
@@ -64,8 +64,8 @@ exports.get_zone = function(username,zone_id) {
  * username String (Required) The username
  * returns List
  **/
-exports.get_zones = function(username) {
-  return new Promise(function(resolve, reject) {
+exports.get_zones = function() {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = [ {
   "zone_id" : 16419109,

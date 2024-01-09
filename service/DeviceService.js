@@ -25,7 +25,7 @@ exports.add_device = function() {
  * no response value expected for this operation
  **/
 exports.delete_device = function() {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
