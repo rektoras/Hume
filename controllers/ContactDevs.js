@@ -5,7 +5,7 @@ var utils = require('../utils/writer.js');
 var ContactDevs = require('../service/ContactDevsService');
 
 // Controller function to contact developers
-module.exports.contact_devs = function contact_devs (req, res, next) {
+module.exports.contact_devs = function contact_devs (req, res) {
   // Extracting parameters from the request
   var fullname = req.swagger.params['fullname'].value;
   var email = req.swagger.params['email'].value;

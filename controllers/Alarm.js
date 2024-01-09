@@ -5,7 +5,7 @@ var utils = require('../utils/writer.js');
 var Alarm = require('../service/AlarmService');
 
 // Controller function to get the alarm status for a specific zone
-module.exports.get_alarm_status = function get_alarm_status (req, res, next) {
+module.exports.get_alarm_status = function get_alarm_status (req, res) {
   // Extracting parameters from the request
   var username = req.swagger.params['username'].value;
   var zone_id = req.swagger.params['zone_id'].value;
@@ -23,7 +23,7 @@ module.exports.get_alarm_status = function get_alarm_status (req, res, next) {
 };
 
 // Controller function to modify the alarm status for a specific zone
-module.exports.modify_alarm_status = function modify_alarm_status (req, res, next) {
+module.exports.modify_alarm_status = function modify_alarm_status (req, res) {
   // Extracting parameters from the request
   var alarm_status = req.swagger.params['alarm_status'].value;
   var username = req.swagger.params['username'].value;

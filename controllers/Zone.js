@@ -5,7 +5,7 @@ var utils = require('../utils/writer.js');
 var Zone = require('../service/ZoneService');
 
 // Controller function to add a new zone
-module.exports.add_zone = function add_zone (req, res, next) {
+module.exports.add_zone = function add_zone (req, res) {
   // Extracting parameters from the request
   var username = req.swagger.params['username'].value;
   var body = req.swagger.params['Body'].value;
@@ -23,7 +23,7 @@ module.exports.add_zone = function add_zone (req, res, next) {
 };
 
 // Controller function to delete a zone
-module.exports.delete_zone = function delete_zone (req, res, next) {
+module.exports.delete_zone = function delete_zone (req, res) {
   // Extracting parameters from the request
   var username = req.swagger.params['username'].value;
   var zone_id = req.swagger.params['zone_id'].value;
@@ -41,7 +41,7 @@ module.exports.delete_zone = function delete_zone (req, res, next) {
 };
 
 // Controller function to get details of a specific zone
-module.exports.get_zone = function get_zone (req, res, next) {
+module.exports.get_zone = function get_zone (req, res) {
   // Extracting parameters from the request
   var username = req.swagger.params['username'].value;
   var zone_id = req.swagger.params['zone_id'].value;
@@ -59,7 +59,7 @@ module.exports.get_zone = function get_zone (req, res, next) {
 };
 
 // Controller function to get all zones for a user
-module.exports.get_zones = function get_zones (req, res, next) {
+module.exports.get_zones = function get_zones (req, res) {
   // Extracting parameters from the request
   var username = req.swagger.params['username'].value;
   

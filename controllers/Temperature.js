@@ -5,7 +5,7 @@ var utils = require('../utils/writer.js');
 var Temperature = require('../service/TemperatureService');
 
 // Controller function to get the temperature for a specific zone
-module.exports.get_temp = function get_temp (req, res, next) {
+module.exports.get_temp = function get_temp (req, res) {
   // Extracting parameters from the request
   var username = req.swagger.params['username'].value;
   var zone_id = req.swagger.params['zone_id'].value;
@@ -23,7 +23,7 @@ module.exports.get_temp = function get_temp (req, res, next) {
 };
 
 // Controller function to modify the temperature status for a specific zone
-module.exports.modify_temp = function modify_temp (req, res, next) {
+module.exports.modify_temp = function modify_temp (req, res) {
   // Extracting parameters from the request
   var temperature_status = req.swagger.params['temperature_status'].value;
   var username = req.swagger.params['username'].value;
